@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.75
+      value: 2.64
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.91
+      value: 2.913
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
@@ -78,6 +78,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2247829719408462640, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
       propertyPath: m_Name
@@ -166,4 +177,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa8d56c2d1a9be4fa3b0aa9b4073a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverMaterial: {fileID: 2100000, guid: 255b78ea3ffa29149b7877bda88ceeb2, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}

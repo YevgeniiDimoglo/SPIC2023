@@ -27,7 +27,10 @@ public class InteractiveObject : MonoBehaviour
         Material[] replaceM = GetComponent<Renderer>().materials;
         for (int i = 0; i < replaceM.Length; i++)
         {
-            replaceM[i] = hoverMaterial;
+            if (i == 1)
+            {
+                replaceM[i] = hoverMaterial;
+            }
         }
         GetComponent<Renderer>().materials = replaceM;
     }
