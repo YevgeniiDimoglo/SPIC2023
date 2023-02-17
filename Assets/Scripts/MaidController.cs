@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MaidController : MonoBehaviour
 {
@@ -21,13 +22,13 @@ public class MaidController : MonoBehaviour
             holdedObject.transform.position = holdingPosition.transform.position;
             holdedObject.transform.rotation = holdingPosition.transform.rotation;
 
-            if (Input.GetMouseButtonDown(1))
+            if (inputRightClick())
             {
                 drop();
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (inputleftClick())
         {
             CameraRaycast ray = Camera.main.GetComponent<CameraRaycast>();
             if (ray && ray.CameraTarget())
@@ -35,6 +36,32 @@ public class MaidController : MonoBehaviour
                 ray.CameraTarget().GetComponent<InteractiveObject>().click();
             }
         }
+    }
+
+    private bool inputleftClick()
+    {
+        if (
+            Mouse.current.leftButton.wasPressedThisFrame ||
+            Gamepad.current.buttonSouth.wasPressedThisFrame
+           )
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool inputRightClick()
+    {
+        if (
+            Mouse.current.rightButton.wasPressedThisFrame ||
+            Gamepad.current.buttonEast.wasPressedThisFrame
+           )
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void hold(GameObject obj)
@@ -45,7 +72,7 @@ public class MaidController : MonoBehaviour
 
     public void drop()
     {
-        holdedObject.transform.position = transform.position + transform.forward * 0.5f;
+        holdedObject.transform.position = transform.position + transform.forward * 0.5f + transform.up;
         holdedObject.transform.rotation = transform.rotation;
         holdedObject.GetComponent<Collider>().enabled = true;
 

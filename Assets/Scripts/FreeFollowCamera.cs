@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FreeFollowCamera : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float CameraSpeed = 5.0f;
+
     [SerializeField] private float SwitchDistance = 3.0f;
     [SerializeField] private float maxCameraDistance = 5.0f;
+    [SerializeField] private float zoomSpeed = 1.0f;
 
     [Header("FPS")]
     [SerializeField] private GameObject FPSTarget;
@@ -24,11 +28,13 @@ public class FreeFollowCamera : MonoBehaviour
     [SerializeField] private float TPSMinVerticalAngle = -10.0f;
     [SerializeField] private float rotateSpeed = 5.0f;
 
-    private Vector3 TPScamaeraVector = Vector3.back;
+    public Vector3 TPScamaeraVector = Vector3.back;
     private float cameraDistance = 2.0f;
 
     private Vector3 lastPlayerPosition;
     private Vector3 PlayerMove;
+
+    private Vector3 InputValue;                 // Horizonal Rotate / Vertical Rotate / Zoom
 
     private enum STATUS
     {
@@ -48,11 +54,15 @@ public class FreeFollowCamera : MonoBehaviour
         transform.position = TPSTarget.transform.position + TargetOffset + CameraOffset;
 
         lastPlayerPosition = TPSTarget.transform.position;
+
+        InputValue = Vector3.zero;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        UpdateInputValue();
+
         if (Application.isFocused)
         {
             Cursor.visible = false;
@@ -73,13 +83,36 @@ public class FreeFollowCamera : MonoBehaviour
                 break;
 
             case STATUS.MOVING_TPS:
-                CameraMoveTo(TPSTarget.transform.position + TargetOffset + (TPScamaeraVector) * SwitchDistance + getTPScameraOffset(), STATUS.TPS);
+                CameraMoveTo(TPSTarget.transform.position + TargetOffset + TPScamaeraVector * SwitchDistance + getTPScameraOffset(), STATUS.TPS);
                 break;
 
             case STATUS.TPS:
                 updateTPSCamera();
                 break;
         }
+    }
+
+    private void UpdateInputValue()
+    {
+        InputValue = Vector3.zero;
+
+        Vector2 MouseDelta = Mouse.current.delta.ReadValue();
+        InputValue.x = Mathf.Clamp(MouseDelta.x, -1, 1);
+        InputValue.y = Mathf.Clamp(-MouseDelta.y, -1, 1);
+        if (Gamepad.current != null)
+        {
+            Vector2 RightStickInput = Gamepad.current.rightStick.ReadValue();
+            if (RightStickInput != Vector2.zero)
+            {
+                InputValue.x = Mathf.Clamp(RightStickInput.x, -1, 1);
+                InputValue.y = Mathf.Clamp(-RightStickInput.y, -1, 1);
+            }
+        }
+
+        // Zoom (InputValue.z)
+        if (Mouse.current.scroll.ReadValue().y != 0) InputValue.z = Mathf.Clamp(Mouse.current.scroll.ReadValue().y, -0.5f, 0.5f);
+        if (Gamepad.current.dpad.up.isPressed) InputValue.z = 0.05f;
+        if (Gamepad.current.dpad.down.isPressed) InputValue.z = -0.05f;
     }
 
     private bool CameraMoveTo(Vector3 p, STATUS s)
@@ -97,7 +130,7 @@ public class FreeFollowCamera : MonoBehaviour
     private void updateFpsCamera()
     {
         syncPlayerRotation();
-        if (Input.GetAxis("Mouse ScrollWheel") < 0) // «
+        if (InputValue.z < 0) // «
         {
             status = STATUS.MOVING_TPS;                     // return to TPS mode
             TPScamaeraVector = -transform.forward;
@@ -107,9 +140,9 @@ public class FreeFollowCamera : MonoBehaviour
         transform.position = getFpsPosition();
 
         float rotateCount = rotateSpeed * 60.0f * Time.deltaTime;
-        transform.Rotate(0, Input.GetAxis("Mouse X") * rotateCount, 0, Space.World);
+        transform.Rotate(0, InputValue.x * rotateCount, 0, Space.World);
 
-        transform.Rotate(-Input.GetAxis("Mouse Y") * rotateCount, 0, 0);
+        transform.Rotate(InputValue.y * rotateCount, 0, 0);
         float currectRotateX = transform.rotation.eulerAngles.x;
         if (currectRotateX > 180) currectRotateX -= 360;
         if (currectRotateX < -180) currectRotateX += 360;
@@ -135,19 +168,18 @@ public class FreeFollowCamera : MonoBehaviour
 
     private void updateTPSCamera()
     {
-        cameraDistance -= Input.GetAxis("Mouse ScrollWheel") * 60.0f * Time.deltaTime;
+        cameraDistance -= InputValue.z * zoomSpeed * Time.deltaTime;
         if (cameraDistance > maxCameraDistance) cameraDistance = maxCameraDistance;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraDistance < SwitchDistance)
+        if (InputValue.z > 0 && cameraDistance < SwitchDistance)
         {
             status = STATUS.MOVING_FPS;
             return;
         }
 
         float rotateCount = rotateSpeed * 60.0f * Time.deltaTime;
-        TPScamaeraVector = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotateCount, Vector3.up) * TPScamaeraVector;
-
-        TPScamaeraVector = Quaternion.AngleAxis(-Input.GetAxis("Mouse Y") * rotateCount, transform.right) * TPScamaeraVector;
+        TPScamaeraVector = Quaternion.AngleAxis(InputValue.x * rotateCount, Vector3.up) * TPScamaeraVector;
+        TPScamaeraVector = Quaternion.AngleAxis(InputValue.y * rotateCount, transform.right) * TPScamaeraVector;
 
         float VerticalAngle = Vector3.Angle(TPScamaeraVector, new Vector3(TPScamaeraVector.x, 0, TPScamaeraVector.z));
         if (TPScamaeraVector.y < 0) VerticalAngle *= -1;
@@ -160,17 +192,48 @@ public class FreeFollowCamera : MonoBehaviour
             TPScamaeraVector = Quaternion.AngleAxis(-(VerticalAngle - TPSMinVerticalAngle), transform.right) * TPScamaeraVector;
         }
 
-        transform.position = TPSTarget.transform.position + TargetOffset + TPScamaeraVector * cameraDistance;
+        Vector3 offset = getTPScameraOffset();
+        transform.position = TPSTarget.transform.position + TargetOffset + TPScamaeraVector * cameraDistance + offset;
 
-        transform.LookAt(TPSTarget.transform.position + TargetOffset);
-        transform.position += getTPScameraOffset();
+        transform.LookAt(TPSTarget.transform.position + TargetOffset + offset);
+
+        CameraCollision(offset);
+    }
+
+    private void CameraCollision(Vector3 offset)
+    {
+        RaycastHit hit;
+        Vector3 target = TPSTarget.transform.position + TargetOffset + offset;
+
+        if (Physics.Linecast(target, transform.position, out hit))
+        {
+            transform.position = target - transform.forward * (hit.distance - 0.1f);
+        }
     }
 
     private Vector3 getTPScameraOffset()
     {
-        return Quaternion.FromToRotation(Vector3.back, new Vector3(TPScamaeraVector.x, 0, TPScamaeraVector.z)) * CameraOffset;
+        Vector3 HorizonVector = new Vector3(TPScamaeraVector.x, 0, TPScamaeraVector.z);
+        Vector3 offset = Quaternion.AngleAxis(Vector3.Angle(Vector3.back, HorizonVector), Vector3.Cross(Vector3.back, HorizonVector)) *
+                         Quaternion.AngleAxis(Vector3.Angle(HorizonVector, TPScamaeraVector), transform.right) * CameraOffset;
+        RaycastHit hit;
+        if (Physics.Linecast(TPSTarget.transform.position + TargetOffset, TPSTarget.transform.position + TargetOffset + offset, out hit))
+        {
+            return offset.normalized * hit.distance * 0.8f;
+        }
+        return offset;
     }
 
     private void syncPlayerRotation()
     { TPSTarget.transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w); }
+
+    public bool hasInput()
+    {
+        return InputValue != Vector3.zero;
+    }
+
+    public bool isTPS()
+    {
+        return status == STATUS.TPS;
+    }
 }
