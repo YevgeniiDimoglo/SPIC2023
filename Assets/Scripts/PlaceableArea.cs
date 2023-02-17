@@ -20,8 +20,8 @@ public class PlaceableArea : MonoBehaviour
                 GameObject obj = new GameObject("PlacePoint_" + y + "_" + x);
                 obj.transform.position = new Vector3(pos.x + Size.x / ItemsX * (x + 0.5f), pos.y, pos.z + Size.z / ItemsY * (y + 0.5f));
                 obj.AddComponent<PlaceablePoint>();
-                obj.AddComponent<SphereCollider>().radius = 0.05f;
-                obj.GetComponent<SphereCollider>().isTrigger = true;
+                obj.AddComponent<BoxCollider>().size = new Vector3(0.1f, 0.1f, 0.1f);
+                obj.GetComponent<Collider>().isTrigger = true;
                 obj.transform.parent = gameObject.transform;
             }
         }

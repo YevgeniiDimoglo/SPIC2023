@@ -68,6 +68,13 @@ public class MoveController : MonoBehaviour
         {
             Quaternion to = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, to, Time.deltaTime * rotateSpeed);
+
+            FreeFollowCamera fc = Camera.main.GetComponent<FreeFollowCamera>();
+            if (inputHorizontal != 0 && inputVertical >= 0 && fc.isTPS() && !fc.hasInput() && Vector3.Angle(transform.forward, Camera.main.transform.forward) < 90)
+            {
+                Vector3 velocity = Vector3.zero;
+                fc.TPScamaeraVector = Vector3.SmoothDamp(fc.TPScamaeraVector, new Vector3(-(transform.forward).x, fc.TPScamaeraVector.y, -(transform.forward).z), ref velocity, 0.05f);
+            }
         }
     }
 }
