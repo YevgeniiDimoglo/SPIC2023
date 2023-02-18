@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] 
+    private LevelLoader levelLoader;
     // Start is called before the first frame update
     public void PlayGame()
-    { 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    {
+        levelLoader.LoadNextLevel();
         Cursor.visible = false;
     }
     public void QuitGame()
