@@ -42,14 +42,17 @@ public class FreeFollowCamera : MonoBehaviour
         FPS,
         MOVING_TPS,
         TPS,
+        STOP
     }
 
     private STATUS status;
+    private STATUS tempStatus;
 
     // Start is called before the first frame update
     private void Start()
     {
         status = STATUS.TPS;
+        tempStatus = status;
 
         transform.position = TPSTarget.transform.position + TargetOffset + CameraOffset;
 
@@ -75,7 +78,10 @@ public class FreeFollowCamera : MonoBehaviour
         switch (status)
         {
             case STATUS.MOVING_FPS:
-                CameraMoveTo(getFpsPosition(), STATUS.FPS);
+                if (CameraMoveTo(getFpsPosition()))
+                {
+                    status = STATUS.FPS;
+                }
                 break;
 
             case STATUS.FPS:
@@ -83,14 +89,20 @@ public class FreeFollowCamera : MonoBehaviour
                 break;
 
             case STATUS.MOVING_TPS:
-                if (CameraMoveTo(TPSTarget.transform.position + TargetOffset + TPScamaeraVector * SwitchDistance + getTPScameraOffset(), STATUS.TPS))
+                Vector3 offset = getTPScameraOffset();
+                if (CameraMoveTo(TPSTarget.transform.position + TargetOffset + TPScamaeraVector * SwitchDistance + offset) || CameraCollision(offset))
                 {
                     cameraDistance = SwitchDistance;
+                    status = STATUS.TPS;
                 }
                 break;
 
             case STATUS.TPS:
                 updateTPSCamera();
+                break;
+
+            case STATUS.STOP:
+                // STOP Following (Update by others)
                 break;
         }
     }
@@ -117,13 +129,12 @@ public class FreeFollowCamera : MonoBehaviour
         }
     }
 
-    private bool CameraMoveTo(Vector3 p, STATUS s)
+    private bool CameraMoveTo(Vector3 p)
     {
         transform.position += PlayerMove;
         transform.position = Vector3.MoveTowards(transform.position, p, CameraSpeed * Time.deltaTime);
         if (Vector3.Distance(transform.position, p) < 0.001f)
         {
-            status = s;
             return true;
         }
         return false;
@@ -203,15 +214,18 @@ public class FreeFollowCamera : MonoBehaviour
         CameraCollision(offset);
     }
 
-    private void CameraCollision(Vector3 offset)
+    private bool CameraCollision(Vector3 offset)
     {
         RaycastHit hit;
         Vector3 target = TPSTarget.transform.position + TargetOffset + offset;
 
-        if (Physics.Linecast(target, transform.position, out hit))
+        if (Physics.Linecast(target, transform.position, out hit, ~(1 << LayerMask.NameToLayer("Player"))))
         {
+            Debug.Log(hit.collider.gameObject.name);
             transform.position = target - transform.forward * (hit.distance - 0.1f);
+            return true;
         }
+        return false;
     }
 
     private Vector3 getTPScameraOffset()
@@ -238,5 +252,28 @@ public class FreeFollowCamera : MonoBehaviour
     public bool isTPS()
     {
         return status == STATUS.TPS;
+    }
+
+    public void StopFollow()
+    {
+        tempStatus = status;
+        status = STATUS.STOP;
+    }
+
+    public void startFollow(Vector3 forward)
+    {
+        switch (tempStatus)
+        {
+            case STATUS.MOVING_FPS:
+            case STATUS.FPS:
+                status = STATUS.MOVING_FPS;
+                break;
+
+            case STATUS.MOVING_TPS:
+            case STATUS.TPS:
+                TPScamaeraVector = forward.normalized;
+                status = STATUS.MOVING_TPS;
+                break;
+        }
     }
 }

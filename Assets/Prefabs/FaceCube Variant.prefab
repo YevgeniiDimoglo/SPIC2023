@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.677
+      value: 1.977
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.913
+      value: 4.213
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
@@ -92,7 +92,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9c2acdd26fc3b60498d3713bb4f95c0b,
         type: 3}
       propertyPath: m_Name
-      value: FaceCube
+      value: FaceCube Variant (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
