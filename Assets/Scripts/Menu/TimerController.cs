@@ -20,7 +20,7 @@ public class TimerController : MonoBehaviour
     private void Start()
     {
         timerCounter.text = "Time: 05:00.00";
-        elapsedTime = 30f;
+        elapsedTime = 180f;
     }
 
     // Update is called once per frame
