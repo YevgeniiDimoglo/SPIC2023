@@ -36,6 +36,15 @@ public class MaidController : MonoBehaviour
                 ray.CameraTarget().GetComponent<InteractiveObject>().click();
             }
         }
+
+        // Debug
+
+        if (Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            List<Scoring.ScoreTotal> Totals = Scoring.getTotals();
+            foreach (Scoring.ScoreTotal total in Totals)
+                Debug.Log(total.title + ": " + total.value);
+        }
     }
 
     private bool inputleftClick()

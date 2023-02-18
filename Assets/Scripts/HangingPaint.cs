@@ -35,7 +35,6 @@ public class HangingPaint : InteractiveObject
             float input = InputRotate();
             if (input != 0)
             {
-                //transform.rotation = Quaternion.AngleAxis(input * rotateSpeed * Time.deltaTime, transform.forward) * transform.rotation;
                 transform.RotateAround(transform.position + offset, transform.forward, input * rotateSpeed * Time.deltaTime);
             }
 
@@ -59,9 +58,9 @@ public class HangingPaint : InteractiveObject
 
     private Vector3 Offset()
     {
-        Vector3 offset;
-        offset = Quaternion.FromToRotation(Vector3.forward, transform.forward) * centerOffset;
-        offset = Quaternion.FromToRotation(Vector3.up, transform.up) * offset;
+        Vector3 offset = centerOffset;
+        offset = Quaternion.AngleAxis(Vector3.Angle(Vector3.forward, transform.forward), Vector3.Cross(Vector3.forward, transform.forward)) * offset;
+        offset = Quaternion.AngleAxis(Vector3.Angle(Vector3.up, transform.up), Vector3.Cross(Vector3.up, transform.up)) * offset;
         return offset;
     }
 

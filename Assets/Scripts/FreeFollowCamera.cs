@@ -221,7 +221,6 @@ public class FreeFollowCamera : MonoBehaviour
 
         if (Physics.Linecast(target, transform.position, out hit, ~(1 << LayerMask.NameToLayer("Player"))))
         {
-            Debug.Log(hit.collider.gameObject.name);
             transform.position = target - transform.forward * (hit.distance - 0.1f);
             return true;
         }
