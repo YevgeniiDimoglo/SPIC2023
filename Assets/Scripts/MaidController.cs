@@ -42,7 +42,7 @@ public class MaidController : MonoBehaviour
     {
         if (
             Mouse.current.leftButton.wasPressedThisFrame ||
-            Gamepad.current.buttonSouth.wasPressedThisFrame
+            (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
            )
         {
             return true;
@@ -55,7 +55,7 @@ public class MaidController : MonoBehaviour
     {
         if (
             Mouse.current.rightButton.wasPressedThisFrame ||
-            Gamepad.current.buttonEast.wasPressedThisFrame
+            (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame)
            )
         {
             return true;

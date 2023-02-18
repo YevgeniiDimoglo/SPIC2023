@@ -83,7 +83,10 @@ public class FreeFollowCamera : MonoBehaviour
                 break;
 
             case STATUS.MOVING_TPS:
-                CameraMoveTo(TPSTarget.transform.position + TargetOffset + TPScamaeraVector * SwitchDistance + getTPScameraOffset(), STATUS.TPS);
+                if (CameraMoveTo(TPSTarget.transform.position + TargetOffset + TPScamaeraVector * SwitchDistance + getTPScameraOffset(), STATUS.TPS))
+                {
+                    cameraDistance = SwitchDistance;
+                }
                 break;
 
             case STATUS.TPS:
@@ -99,6 +102,8 @@ public class FreeFollowCamera : MonoBehaviour
         Vector2 MouseDelta = Mouse.current.delta.ReadValue();
         InputValue.x = Mathf.Clamp(MouseDelta.x, -1, 1);
         InputValue.y = Mathf.Clamp(-MouseDelta.y, -1, 1);
+        if (Mouse.current.scroll.ReadValue().y != 0) InputValue.z = Mathf.Clamp(Mouse.current.scroll.ReadValue().y, -0.5f, 0.5f);
+
         if (Gamepad.current != null)
         {
             Vector2 RightStickInput = Gamepad.current.rightStick.ReadValue();
@@ -107,12 +112,9 @@ public class FreeFollowCamera : MonoBehaviour
                 InputValue.x = Mathf.Clamp(RightStickInput.x, -1, 1);
                 InputValue.y = Mathf.Clamp(-RightStickInput.y, -1, 1);
             }
+            if (Gamepad.current.dpad.up.isPressed) InputValue.z = 0.05f;
+            if (Gamepad.current.dpad.down.isPressed) InputValue.z = -0.05f;
         }
-
-        // Zoom (InputValue.z)
-        if (Mouse.current.scroll.ReadValue().y != 0) InputValue.z = Mathf.Clamp(Mouse.current.scroll.ReadValue().y, -0.5f, 0.5f);
-        if (Gamepad.current.dpad.up.isPressed) InputValue.z = 0.05f;
-        if (Gamepad.current.dpad.down.isPressed) InputValue.z = -0.05f;
     }
 
     private bool CameraMoveTo(Vector3 p, STATUS s)
@@ -129,7 +131,6 @@ public class FreeFollowCamera : MonoBehaviour
 
     private void updateFpsCamera()
     {
-        syncPlayerRotation();
         if (InputValue.z < 0) // «
         {
             status = STATUS.MOVING_TPS;                     // return to TPS mode
@@ -159,6 +160,8 @@ public class FreeFollowCamera : MonoBehaviour
             // ‰ºŒü‚«
             GetComponent<Camera>().nearClipPlane = 0.08f;
         }
+
+        syncPlayerRotation();
     }
 
     private Vector3 getFpsPosition()
