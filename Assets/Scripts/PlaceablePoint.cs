@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor;
 
 public class PlaceablePoint : InteractiveObject
 
@@ -47,17 +46,6 @@ public class PlaceablePoint : InteractiveObject
         cloneObject = Instantiate(obj);
         cloneObject.transform.position = transform.position;
         cloneObject.transform.rotation = Quaternion.Euler(0, angle, 0);
-
-        Material[] ms = cloneObject.GetComponent<Renderer>().materials;
-        for (int i = 0; i < ms.Length; i++)
-        {
-            ms[i].SetFloat("_Surface", (float)BaseShaderGUI.SurfaceType.Transparent);
-            BaseShaderGUI.SetupMaterialBlendMode(ms[i]);
-            Color color = ms[i].color;
-            color.a = 0.7f;
-            ms[i].color = color;
-        }
-        cloneObject.GetComponent<Renderer>().materials = ms;
 
         Rigidbody rb = cloneObject.GetComponent<Rigidbody>();
         if (rb) rb.useGravity = false;
