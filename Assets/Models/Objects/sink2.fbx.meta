@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 2b0c6183fa8a3994ab975fb9373fb30f
+guid: 20adaca77907bce41ac93e4133713297
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hose_uv
+    second: {fileID: 2100000, guid: 258bbf97588eb6f4ea327a0205becb1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sink_hole_uv
+    second: {fileID: 2100000, guid: 41b8f42b53d513c4792856176ce0e0d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sink_uv
+    second: {fileID: 2100000, guid: feac21c02fa9cec49a44e3a619e446d5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
