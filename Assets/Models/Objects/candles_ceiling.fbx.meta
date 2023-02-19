@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 347e072fec581064bba83c81df17c6e1
+guid: 5795df29da212d24a82514deb9645bdf
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: candle_1
+    second: {fileID: 2100000, guid: 9df76ab9d38b4c9488cc42c55b6ab7ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: candle_ceiling_uv
+    second: {fileID: 2100000, guid: 82810cdc6bbf4d74dafbb4181121ed21, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
