@@ -13,6 +13,7 @@ public class Return : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return)) 
         {
+            Cursor.visible = true;
             levelLoader.LoadFirstLevel();
         }
     }

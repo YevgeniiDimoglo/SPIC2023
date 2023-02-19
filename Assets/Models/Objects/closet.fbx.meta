@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 9d6d41f25174fe243a7ce753e0a75848
+guid: b1192ae560fcd0e42926b3dacf33742e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: closet_uv
+    second: {fileID: 2100000, guid: 0787367208ee2b648825b98e22d4c55a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
