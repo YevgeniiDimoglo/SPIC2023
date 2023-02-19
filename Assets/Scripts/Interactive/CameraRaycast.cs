@@ -33,6 +33,15 @@ public class CameraRaycast : MonoBehaviour
         {
             target = hit.collider.gameObject;
         }
+        else if (
+            (Physics.SphereCast(transform.position,
+            (Player.GetComponent<MaidController>().getHolding() == null) ? SelectRadius : 0.01f,
+            transform.forward, out hit, 5, LayerMask.GetMask("Destructible"))) &&
+            (Vector3.Distance(hit.point, Player.transform.position + PlayerOffset) <= RayLength) &&
+            (hit.collider.GetComponent<InteractiveObject>()))
+        {
+            target = hit.collider.gameObject;
+        }
         updateLastTarget(target);
     }
 
@@ -50,7 +59,7 @@ public class CameraRaycast : MonoBehaviour
     {
         if (target != lastTarget)
         {
-            if (lastTarget != null)
+            if (lastTarget != null && target != null)
             {
                 // Unhover a target
                 lastTarget.GetComponent<InteractiveObject>().unhover();
