@@ -14,13 +14,13 @@ public class TimerController : MonoBehaviour
 
     private TimeSpan timePlaying;
 
-    private float elapsedTime;
+    [SerializeField]
+    private float elapsedTime = 180f;
 
     // Start is called before the first frame update
     private void Start()
     {
         timerCounter.text = "Time: 05:00.00";
-        elapsedTime = 180f;
     }
 
     // Update is called once per frame

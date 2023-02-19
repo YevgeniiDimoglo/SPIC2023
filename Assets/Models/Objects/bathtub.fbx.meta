@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: e785896784644ce43a9c478e76849c73
+guid: 84a32e4b2036f8140baff49adc31af0a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bathtub_uv
+    second: {fileID: 2100000, guid: 86c386de143707b479d00de895052612, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hose_uv
+    second: {fileID: 2100000, guid: b60c4a45a8ecee347b2daa5c16ba9f1a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
