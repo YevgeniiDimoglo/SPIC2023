@@ -85,6 +85,7 @@ public class MoveController : MonoBehaviour
         _rigidbody.velocity = direction * speed;
 
         _animator.SetFloat("Speed", speed);
+        _animator.speed = (speed >= 0.1) ? Mathf.Clamp(speed / maxMoveSpeed, 0.1f, 1.5f) : 1;
     }
 
     private void updateRotate()
