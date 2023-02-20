@@ -106,4 +106,9 @@ public class PlaceablePoint : InteractiveObject
     {
         placedObject = null;
     }
+
+    public GameObject getObject()
+    {
+        return placedObject;
+    }
 }

@@ -24,6 +24,7 @@ public class MaidController : MonoBehaviour
 
             if (inputRightClick() && (Camera.main.GetComponent<FreeFollowCamera>().isTPS() || Camera.main.GetComponent<FreeFollowCamera>().isFPS()))
             {
+                holdedObject.GetComponent<Rigidbody>().AddForce(transform.forward * 10.0f, ForceMode.Impulse);
                 drop();
             }
         }
