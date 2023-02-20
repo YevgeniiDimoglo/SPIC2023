@@ -22,7 +22,7 @@ public class MaidController : MonoBehaviour
             holdedObject.transform.position = holdingPosition.transform.position;
             holdedObject.transform.rotation = holdingPosition.transform.rotation;
 
-            if (inputRightClick())
+            if (inputRightClick() && (Camera.main.GetComponent<FreeFollowCamera>().isTPS() || Camera.main.GetComponent<FreeFollowCamera>().isFPS()))
             {
                 drop();
             }

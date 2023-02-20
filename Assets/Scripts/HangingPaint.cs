@@ -41,10 +41,8 @@ public class HangingPaint : InteractiveObject
             if (InputBack())
             {
                 rotateMode = false;
-
                 player.SetActive(true);
-
-                Camera.main.GetComponent<FreeFollowCamera>().startFollow(transform.forward);
+                Camera.main.GetComponent<FreeFollowCamera>().startFollow();
             }
         }
     }
