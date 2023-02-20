@@ -253,13 +253,18 @@ public class FreeFollowCamera : MonoBehaviour
         return status == STATUS.TPS;
     }
 
+    public bool isFPS()
+    {
+        return status == STATUS.FPS;
+    }
+
     public void StopFollow()
     {
         tempStatus = status;
         status = STATUS.STOP;
     }
 
-    public void startFollow(Vector3 forward)
+    public void startFollow()
     {
         switch (tempStatus)
         {
@@ -270,7 +275,7 @@ public class FreeFollowCamera : MonoBehaviour
 
             case STATUS.MOVING_TPS:
             case STATUS.TPS:
-                TPScamaeraVector = forward.normalized;
+                TPScamaeraVector = -transform.forward;
                 status = STATUS.MOVING_TPS;
                 break;
         }
