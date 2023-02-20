@@ -23,7 +23,6 @@ public class HoldableObject : InteractiveObject
     {
         if (player.GetComponent<MaidController>().getHolding() != null) return;
         player.GetComponent<MaidController>().hold(gameObject);
-        GetComponent<Collider>().enabled = false;
 
         if (placedAt != null)
         {

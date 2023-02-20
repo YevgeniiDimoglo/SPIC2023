@@ -24,8 +24,12 @@ public class MaidController : MonoBehaviour
 
             if (inputRightClick() && (Camera.main.GetComponent<FreeFollowCamera>().isTPS() || Camera.main.GetComponent<FreeFollowCamera>().isFPS()))
             {
+                // Drop
+                holdedObject.transform.position = transform.position + transform.forward * 0.3f + transform.up;
+                holdedObject.transform.rotation = transform.rotation;
                 holdedObject.GetComponent<Rigidbody>().AddForce(transform.forward * 10.0f, ForceMode.Impulse);
-                drop();
+
+                release();
             }
         }
 
@@ -77,13 +81,12 @@ public class MaidController : MonoBehaviour
     public void hold(GameObject obj)
     {
         if (holdedObject != null) return;
+        obj.GetComponent<Collider>().enabled = false;
         holdedObject = obj;
     }
 
-    public void drop()
+    public void release()
     {
-        holdedObject.transform.position = transform.position + transform.forward * 0.5f + transform.up;
-        holdedObject.transform.rotation = transform.rotation;
         holdedObject.GetComponent<Collider>().enabled = true;
 
         holdedObject = null;
