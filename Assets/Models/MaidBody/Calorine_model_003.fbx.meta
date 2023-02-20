@@ -3,7 +3,27 @@ guid: f4cfd4989782631489a068eeba605b36
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Apn
+    second: {fileID: 2100000, guid: 3a061367869ca094db4bb9f74e369a75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dress
+    second: {fileID: 2100000, guid: 709abb391f179634ab02cfaaa4bb81a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Under_Dress
+    second: {fileID: 2100000, guid: 8aa9974f4140e7a4985ed5d200676c81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: ad10490631ac339499931ffb6bd167fe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
