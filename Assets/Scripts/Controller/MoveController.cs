@@ -18,6 +18,7 @@ public class MoveController : MonoBehaviour
     private bool neverRun = true;
 
     private Rigidbody _rigidbody;
+    private Animator _animator;
 
     // Start is called before the first frame update
     private void Start()
@@ -26,6 +27,7 @@ public class MoveController : MonoBehaviour
         InputValue = Vector2.zero;
         direction = transform.forward;
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
 
         runMode = false;
     }
@@ -81,6 +83,8 @@ public class MoveController : MonoBehaviour
             if (speed <= 0.001f) speed = 0.0f;
         }
         _rigidbody.velocity = direction * speed;
+
+        _animator.SetFloat("Speed", speed);
     }
 
     private void updateRotate()

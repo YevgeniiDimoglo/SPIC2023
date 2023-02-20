@@ -48,13 +48,6 @@ public class Books : MonoBehaviour
         new BookData("FANTASY COLLECTION", "ÉAÅ[Ég"),
     };
 
-    public Color[] colorList =
-    {
-        Color.red,
-        Color.blue,
-        Color.green,
-    };
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -92,8 +85,7 @@ public class Books : MonoBehaviour
 
         GameObject book = Instantiate(Prefabs[Random.Range(0, Prefabs.Count - 1)]);
         BookData bd = bookList[bookList.Length - 1];
-        Color CoverColor = colorList[Random.Range(0, colorList.Length)];
-        book.GetComponent<BookObject>().setData(bd.title, bd.category, CoverColor);
+        book.GetComponent<BookObject>().setData(bd.title, bd.category);
 
         System.Array.Resize(ref bookList, bookList.Length - 1);
 

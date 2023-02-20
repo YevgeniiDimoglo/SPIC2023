@@ -31,6 +31,11 @@ public class PlaceablePoint : InteractiveObject
             while (angle < 0) angle += 360;
 
             cloneObject.transform.rotation = Quaternion.RotateTowards(cloneObject.transform.rotation, Quaternion.Euler(0, angle, 0), 240.0f * Time.deltaTime);
+
+            // Tutorial
+            Tutorial tutorial = GameObject.Find("UI").GetComponentInChildren<Tutorial>();
+            tutorial.updateRotationTutorialPos(cloneObject.transform.position);
+            tutorial.showRotationTutorial();
         }
         if (placedObject)
         {
@@ -81,6 +86,9 @@ public class PlaceablePoint : InteractiveObject
     {
         Destroy(cloneObject);
         cloneObject = null;
+
+        Tutorial tutorial = GameObject.Find("UI").GetComponentInChildren<Tutorial>();
+        tutorial.hideRotationTutorial();
     }
 
     public override void click()
