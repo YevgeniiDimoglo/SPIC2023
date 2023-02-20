@@ -168,7 +168,6 @@ public class Bookshelf : InteractiveObject
     private void pickBook(int idx)
     {
         Books[idx].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        Books[idx].GetComponent<Collider>().enabled = true;
         player.GetComponent<MaidController>().hold(Books[idx]);
         Books.Remove(Books[idx]);
     }
@@ -198,7 +197,7 @@ public class Bookshelf : InteractiveObject
         }
         if (obj != null && obj.GetComponent<BookObject>())
         {
-            maid.drop();
+            maid.release();
             addBook(obj);
         }
     }

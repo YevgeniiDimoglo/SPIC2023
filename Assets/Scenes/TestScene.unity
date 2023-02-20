@@ -2316,27 +2316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
---- !u!65 &485958710
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485958704}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.20314214, y: 0.4032382, z: 0.20314217}
-  m_Center: {x: -0.000000011175871, y: 0.2016191, z: -0.0000000037252903}
 --- !u!1 &488936404
 GameObject:
   m_ObjectHideFlags: 0
@@ -5940,10 +5919,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 485958708}
-    - targetCorrespondingSourceObject: {fileID: 7553150652001919166, guid: cb138ba4febc54f4391c735f51e22d9f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 485958710}
   m_SourcePrefab: {fileID: 100100000, guid: cb138ba4febc54f4391c735f51e22d9f, type: 3}
 --- !u!1 &1349530626
 GameObject:

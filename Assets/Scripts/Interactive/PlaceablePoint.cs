@@ -60,9 +60,10 @@ public class PlaceablePoint : InteractiveObject
     {
         if (
             Keyboard.current.qKey.wasPressedThisFrame ||
-            Gamepad.current.leftShoulder.wasPressedThisFrame ||
-            Gamepad.current.dpad.left.wasPressedThisFrame
-           )
+            (Gamepad.current != null &&
+            (Gamepad.current.leftShoulder.wasPressedThisFrame ||
+             Gamepad.current.dpad.left.wasPressedThisFrame))
+        )
         {
             return true;
         }
@@ -73,9 +74,10 @@ public class PlaceablePoint : InteractiveObject
     {
         if (
             Keyboard.current.eKey.wasPressedThisFrame ||
-            Gamepad.current.rightShoulder.wasPressedThisFrame ||
-            Gamepad.current.dpad.right.wasPressedThisFrame
-           )
+            (Gamepad.current != null &&
+            (Gamepad.current.rightShoulder.wasPressedThisFrame ||
+             Gamepad.current.dpad.right.wasPressedThisFrame))
+        )
         {
             return true;
         }
@@ -94,7 +96,7 @@ public class PlaceablePoint : InteractiveObject
     public override void click()
     {
         GameObject obj = player.GetComponent<MaidController>().getHolding();
-        player.GetComponent<MaidController>().drop();
+        player.GetComponent<MaidController>().release();
 
         obj.transform.position = cloneObject.transform.position;
         obj.transform.rotation = Quaternion.Euler(0, angle, 0);
