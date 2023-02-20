@@ -7,7 +7,6 @@ public class BookObject : HoldableObject
 {
     [SerializeField] private string title = "";
     [SerializeField] private string category = "";
-    [SerializeField] private Color color = Color.white;
 
     private TextMeshPro CoverText;
 
@@ -33,19 +32,10 @@ public class BookObject : HoldableObject
         updatePopup();
     }
 
-    public void setData(string title, string category, Color color)
+    public void setData(string title, string category)
     {
         this.title = title;
         this.category = category;
-        this.color = color;
-
-        // êFïœÇ¶
-        Material[] ms = GetComponent<Renderer>().materials;
-        foreach (Material m in ms)
-        {
-            m.color = color;
-        }
-        GetComponent<Renderer>().materials = ms;
 
         UpdateCover();
     }

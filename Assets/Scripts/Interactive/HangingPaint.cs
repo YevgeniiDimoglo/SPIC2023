@@ -38,11 +38,18 @@ public class HangingPaint : InteractiveObject
                 transform.RotateAround(transform.position + offset, transform.forward, input * rotateSpeed * Time.deltaTime);
             }
 
+            // Tutorial
+            Tutorial tutorial = GameObject.Find("UI").GetComponentInChildren<Tutorial>();
+            tutorial.updateRotationTutorialPos(Camera.main.transform.position + Camera.main.transform.forward);
+            tutorial.showRotationTutorial();
+
             if (InputBack())
             {
                 rotateMode = false;
                 player.SetActive(true);
                 Camera.main.GetComponent<FreeFollowCamera>().startFollow();
+
+                tutorial.hideRotationTutorial();
             }
         }
     }
