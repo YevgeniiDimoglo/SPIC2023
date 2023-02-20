@@ -59,7 +59,7 @@ public class CameraRaycast : MonoBehaviour
     {
         if (target != lastTarget)
         {
-            if (lastTarget != null && target != null)
+            if (lastTarget != null)
             {
                 // Unhover a target
                 lastTarget.GetComponent<InteractiveObject>().unhover();

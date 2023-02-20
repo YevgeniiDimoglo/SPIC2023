@@ -5,13 +5,17 @@ using UnityEngine.InputSystem;
 
 public class MoveController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxMoveSpeed;
-    [SerializeField] private float rotateSpeed;
+    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float maxMoveSpeed = 5.0f;
+    [SerializeField] private float maxRunSpeed = 10.0f;
+    [SerializeField] private float rotateSpeed = 5.0f;
 
     private float speed;
     private Vector2 InputValue;
     private Vector3 direction;
+
+    private bool runMode;
+    private bool neverRun = true;
 
     private Rigidbody _rigidbody;
 
@@ -22,15 +26,34 @@ public class MoveController : MonoBehaviour
         InputValue = Vector2.zero;
         direction = transform.forward;
         _rigidbody = GetComponent<Rigidbody>();
+
+        runMode = false;
+    }
+
+    public bool NeverRun()
+    {
+        return neverRun;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        updateRunMode();
         updateInput();
 
         updateMovement();
         updateRotate();
+    }
+
+    private void updateRunMode()
+    {
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame) runMode = true;
+        if (Keyboard.current.leftShiftKey.wasReleasedThisFrame) runMode = false;
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.leftStickButton.wasPressedThisFrame) runMode = !runMode;
+        }
+        if (runMode) neverRun = false;
     }
 
     private void updateInput()
@@ -47,7 +70,7 @@ public class MoveController : MonoBehaviour
     {
         if (InputValue != Vector2.zero)
         {
-            speed = Mathf.Clamp(speed += moveSpeed * Time.deltaTime, 0, maxMoveSpeed);
+            speed = Mathf.Clamp(speed += moveSpeed * Time.deltaTime, 0, (runMode) ? maxRunSpeed : maxMoveSpeed);
             direction = Camera.main.transform.right * InputValue.x + Camera.main.transform.forward * InputValue.y;
             direction.y = 0.0f;
             direction.Normalize();
