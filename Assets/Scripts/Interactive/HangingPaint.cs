@@ -81,11 +81,11 @@ public class HangingPaint : InteractiveObject
     {
         float input = 0.0f;
 
-        if (Keyboard.current.qKey.isPressed) input = -1;
-        if (Keyboard.current.eKey.isPressed) input = 1;
+        if (Keyboard.current.qKey.isPressed) input = 1;
+        if (Keyboard.current.eKey.isPressed) input = -1;
         if (Gamepad.current != null)
         {
-            if (Gamepad.current.dpad.left.isPressed || Gamepad.current.leftShoulder.isPressed) input = -1;
+            if (Gamepad.current.dpad.left.isPressed || Gamepad.current.leftShoulder.isPressed) input = 1;
             if (Gamepad.current.dpad.right.isPressed || Gamepad.current.rightShoulder.isPressed) input = -1;
         }
 
