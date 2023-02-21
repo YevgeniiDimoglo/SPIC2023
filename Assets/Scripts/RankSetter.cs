@@ -15,27 +15,27 @@ public class RankSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (scoreHolder.totalScore == 0)
+        if (scoreHolder.TotalScore == 0)
         {
             transform.GetComponent<Image>().sprite = rankImages[0];
         }
 
-        if (scoreHolder.totalScore >= 0 && scoreHolder.totalScore < 100)
+        if (scoreHolder.TotalScore >= 0 && scoreHolder.TotalScore < 100)
         {
             transform.GetComponent<Image>().sprite = rankImages[1];
         }
 
-        if (scoreHolder.totalScore >= 100 && scoreHolder.totalScore < 200)
+        if (scoreHolder.TotalScore >= 100 && scoreHolder.TotalScore < 200)
         {
             transform.GetComponent<Image>().sprite = rankImages[2];
         }
 
-        if (scoreHolder.totalScore >= 200 && scoreHolder.totalScore < 300)
+        if (scoreHolder.TotalScore >= 200 && scoreHolder.TotalScore < 300)
         {
             transform.GetComponent<Image>().sprite = rankImages[3];
         }
 
-        if (scoreHolder.totalScore >= 300)
+        if (scoreHolder.TotalScore >= 300)
         {
             transform.GetComponent<Image>().sprite = rankImages[4];
         }

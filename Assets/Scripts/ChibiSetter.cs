@@ -14,17 +14,17 @@ public class ChibiSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (scoreHolder.totalScore == 0)
+        if (scoreHolder.TotalScore == 0)
         {
             transform.GetComponent<Image>().sprite = rankImages[0];
         }
 
-        if (scoreHolder.totalScore >= 0 && scoreHolder.totalScore < 200)
+        if (scoreHolder.TotalScore >= 0 && scoreHolder.TotalScore < 200)
         {
             transform.GetComponent<Image>().sprite = rankImages[1];
         }
 
-        if (scoreHolder.totalScore >= 300)
+        if (scoreHolder.TotalScore >= 300)
         {
             transform.GetComponent<Image>().sprite = rankImages[2];
         }

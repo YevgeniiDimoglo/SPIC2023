@@ -26,5 +26,6 @@ public class DestructableObject : InteractiveObject
     {
         graffity.DestroySquare(transform.GetSiblingIndex());
         Destroy(this.GetComponent<BoxCollider>());
+        ScoreHolder.dustCounter -= 1;
     }
 }
