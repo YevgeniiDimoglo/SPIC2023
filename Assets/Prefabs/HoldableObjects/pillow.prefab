@@ -65,6 +65,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 08bfb2687ff07b44f8df255aa13cd8b3, type: 2}
+  - {fileID: 2100000, guid: 08bfb2687ff07b44f8df255aa13cd8b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +134,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3629593832088921753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
+  holdingPosition: {x: -0.05, y: -0.1, z: 0}
+  holdingRotation: {x: 0, y: 0, z: 0.50000006, w: -0.8660254}
