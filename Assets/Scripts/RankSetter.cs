@@ -35,14 +35,9 @@ public class RankSetter : MonoBehaviour
             transform.GetComponent<Image>().sprite = rankImages[3];
         }
 
-        if (scoreHolder.totalScore >= 300 && scoreHolder.totalScore < 500)
+        if (scoreHolder.totalScore >= 300)
         {
             transform.GetComponent<Image>().sprite = rankImages[4];
-        }
-
-        if (scoreHolder.totalScore >= 500)
-        {
-            transform.GetComponent<Image>().sprite = rankImages[5];
         }
     }
 
