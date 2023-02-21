@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1128194212080509267}
   - component: {fileID: 465699825326353495}
   - component: {fileID: 6605474265575222667}
+  - component: {fileID: 168503664}
+  - component: {fileID: 168503663}
   m_Layer: 0
   m_Name: single
   m_TagString: Untagged
@@ -62,6 +64,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1880cd2649ba450478e218f5d242441f, type: 2}
+  - {fileID: 2100000, guid: 1880cd2649ba450478e218f5d242441f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,6 +86,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &168503664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203568816779712955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.68880004, y: 1.61, z: 0.18292704}
+  m_Center: {x: -0.0000006705523, y: 0, z: 0}
+--- !u!114 &168503663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203568816779712955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc3ca6a1b804484fbc7d1c95dee0fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
+  CenterPoint: {x: -0.4, y: 0, z: -0.02}
+  openAngle: 90
+  roateSpeed: 180
 --- !u!1 &5062748624523751505
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +153,7 @@ Transform:
   m_Children:
   - {fileID: 7943275842322833420}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &8589054696393050800
 GameObject:
