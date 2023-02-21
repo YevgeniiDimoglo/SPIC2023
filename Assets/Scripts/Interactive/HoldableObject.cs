@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HoldableObject : InteractiveObject
 {
+    [SerializeField] private Vector3 holdingPosition = Vector3.zero;
+    [SerializeField] private Quaternion holdingRotation = Quaternion.identity;
+
     private PlaceablePoint placedAt;
 
     protected override void Start()
@@ -38,5 +41,18 @@ public class HoldableObject : InteractiveObject
 
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         point.setObject(gameObject);
+    }
+
+    public Vector3 HoldingPosition()
+    {
+        Vector3 result = holdingPosition;
+
+        result = transform.localRotation * result;
+        return result;
+    }
+
+    public Quaternion HoldingRotation()
+    {
+        return holdingRotation;
     }
 }
