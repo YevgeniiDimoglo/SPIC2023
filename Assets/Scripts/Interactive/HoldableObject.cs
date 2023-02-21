@@ -45,10 +45,7 @@ public class HoldableObject : InteractiveObject
 
     public Vector3 HoldingPosition()
     {
-        Vector3 result = holdingPosition;
-
-        result = transform.localRotation * result;
-        return result;
+        return transform.localRotation * holdingPosition;
     }
 
     public Quaternion HoldingRotation()

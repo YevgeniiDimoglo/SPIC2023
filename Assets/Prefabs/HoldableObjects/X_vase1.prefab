@@ -113,7 +113,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &8085669604929903234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -148,3 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
+  holdingPosition: {x: -0.01, y: -0.2, z: 0}
+  holdingRotation: {x: 0.64278764, y: 0, z: 0, w: -0.76604444}
