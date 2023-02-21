@@ -7,11 +7,13 @@ public class MaidController : MonoBehaviour
 {
     [SerializeField] private GameObject holdedObject;
     [SerializeField] private GameObject holdingPosition;
+    private Animator _animator;
 
     // Start is called before the first frame update
     private void Start()
     {
         holdedObject = null;
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,8 +44,9 @@ public class MaidController : MonoBehaviour
             }
         }
 
-        // Debug
+        _animator.SetBool("Holding", holdedObject != null);
 
+        // Debug
         if (Keyboard.current.iKey.wasPressedThisFrame)
         {
             List<Scoring.ScoreTotal> Totals = Scoring.getTotals();

@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84ee7a16029cad34cbedcd41f30f9b63, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90204c7bca4af6242b0ee9e8445b36c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3401,7 +3401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3ad194e9d8ea7d04597484272479eba4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ad1af171066d1a4f9ed355f4797e32e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5280,8 +5280,8 @@ MonoBehaviour:
   MoveImageSource: {fileID: 21300000, guid: ec93387d558cf084cb49447a91d3e951, type: 3}
   RunImageSource: {fileID: 21300000, guid: ec93387d558cf084cb49447a91d3e951, type: 3}
   ZoomImageSource: {fileID: 21300000, guid: 11190dfc27b1a864bad7c49aa6fee04c, type: 3}
-  SelectImageSource: {fileID: 21300000, guid: cc313145495d2f04081a54f753dbe6ce, type: 3}
-  CancelImageSource: {fileID: 21300000, guid: 771c20c8072dbed4b8be96aec2bc6ea4, type: 3}
+  SelectImageSource: {fileID: 21300000, guid: 233694ec5b399ec48966faf5716353e4, type: 3}
+  CancelImageSource: {fileID: 21300000, guid: b014602a241c1854bb07bc9fb2bb9f4d, type: 3}
 --- !u!1 &1048004395
 GameObject:
   m_ObjectHideFlags: 0
