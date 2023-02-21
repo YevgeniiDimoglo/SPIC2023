@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2490728461999619572}
   - component: {fileID: 8748686066380983688}
   - component: {fileID: 3008915199556065761}
-  - component: {fileID: 2995057097280126008}
   - component: {fileID: 1909817999242691834}
   m_Layer: 0
   m_Name: pillow
@@ -124,22 +123,6 @@ MonoBehaviour:
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
   holdingPosition: {x: 0, y: 0, z: 0}
   holdingRotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &2995057097280126008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4147855005923056673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e0a15e32d531640b1308fa5f89c8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dustPercent: 0
-  paintingScore: 0
-  booksScore: 0
-  totalScore: 0
 --- !u!54 &1909817999242691834
 Rigidbody:
   m_ObjectHideFlags: 0
