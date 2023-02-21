@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Scoring;
 
 public class Bookshelf : InteractiveObject
 {
@@ -9,7 +10,7 @@ public class Bookshelf : InteractiveObject
     [SerializeField] private float cameraDistance = 1;
     [SerializeField] private int cols = 10;                                 // number of each col
     [SerializeField] private float colsHeight = 0.3f;
-    private List<GameObject> Books = new List<GameObject>();
+    private static List<GameObject> Books = new List<GameObject>();
     private bool orderMode;
     private int focusIndex;
     private bool selected;
@@ -258,5 +259,10 @@ public class Bookshelf : InteractiveObject
                 return true;
         }
         return false;
+    }
+
+    public static List<GameObject> getTotals()
+    {
+        return Books;
     }
 }

@@ -14,8 +14,7 @@ public class TimerController : MonoBehaviour
 
     private TimeSpan timePlaying;
 
-    [SerializeField]
-    private float elapsedTime = 180f;
+    public float elapsedTime = 180f;
 
     // Start is called before the first frame update
     private void Start()

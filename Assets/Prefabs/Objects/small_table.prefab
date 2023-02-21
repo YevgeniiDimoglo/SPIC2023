@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5604741668474818424}
   m_Layer: 0
   m_Name: Place area
-  m_TagString: Untagged
+  m_TagString: PlaceArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
