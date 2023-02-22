@@ -37,15 +37,16 @@ public class Tutorial : MonoBehaviour
     public enum CONTOROL
     {
         MOVE,
-        RUN,
-        CAMERA,
         ZOOM,
+        CANCEL,
         SELECT,
-        CANCEL
+        CAMERA,
+        RUN,
     }
 
     private struct TutorialUI
     {
+        private static float posY = Screen.height / 7.0f * 6.0f;
         public GameObject gameObject;
         public Image image;
         public TextMeshProUGUI text;
@@ -55,13 +56,19 @@ public class Tutorial : MonoBehaviour
         {
             this.gameObject = obj;
             this.image = obj.GetComponent<Image>();
+
+            float size = Screen.height / 7.0f;
+            obj.transform.position = new Vector3(Screen.width * 0.6f, posY, 0);
+            obj.GetComponent<RectTransform>().sizeDelta = new Vector2(size, size);
+            posY -= size;
+
             GameObject textobject = new GameObject("text");
             textobject.transform.parent = obj.transform;
-            textobject.transform.position = obj.transform.position - obj.transform.up * 50.0f;
+            textobject.transform.position = obj.transform.position + obj.transform.right * (Screen.width * 0.25f + size * 0.5f);
             this.text = textobject.AddComponent<TextMeshProUGUI>();
-            this.text.alignment = TextAlignmentOptions.Center;
+            this.text.alignment = TextAlignmentOptions.MidlineLeft;
             this.display = false;
-            textobject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 50);
+            textobject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width * 0.5f, 50);
         }
     }
 
@@ -70,11 +77,11 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         UI[CONTOROL.MOVE] = new TutorialUI(MoveTutorial);
-        UI[CONTOROL.RUN] = new TutorialUI(RunTutorial);
-        UI[CONTOROL.CAMERA] = new TutorialUI(CameraTutorial);
         UI[CONTOROL.ZOOM] = new TutorialUI(ZoomTutorial);
         UI[CONTOROL.SELECT] = new TutorialUI(SelectTutorial);
         UI[CONTOROL.CANCEL] = new TutorialUI(CancelTutorial);
+        UI[CONTOROL.CAMERA] = new TutorialUI(CameraTutorial);
+        UI[CONTOROL.RUN] = new TutorialUI(RunTutorial);
 
         // Gamepad
         if (Gamepad.current != null)
@@ -100,6 +107,11 @@ public class Tutorial : MonoBehaviour
 
         displayTutorial(CONTOROL.CAMERA, "カメラ移動");
         displayTutorial(CONTOROL.MOVE, "移動");
+        displayTutorial(CONTOROL.ZOOM, "ズーム");
+        displayTutorial(CONTOROL.SELECT, "選択 / 拾う");
+        displayTutorial(CONTOROL.CANCEL, "戻る / 投げる(はしたない)");
+        displayTutorial(CONTOROL.RUN, "急ぎ足モード(はしたない)");
+        Destroy(UI[CONTOROL.RUN].gameObject, 5);
     }
 
     private void displayTutorial(CONTOROL control, string messge)
@@ -146,8 +158,6 @@ public class Tutorial : MonoBehaviour
             if (InputMove())
             {
                 UpdateUIstatue(CONTOROL.MOVE, false);
-                displayTutorial(CONTOROL.RUN, "急ぎ足モード(はしたない)");
-                Destroy(UI[CONTOROL.RUN].gameObject, 5);
             }
         }
 
@@ -156,9 +166,6 @@ public class Tutorial : MonoBehaviour
             if (InputCamera())
             {
                 UpdateUIstatue(CONTOROL.CAMERA, false);
-
-                displayTutorial(CONTOROL.ZOOM, "ズーム");
-                displayTutorial(CONTOROL.SELECT, "選択 / 拾う");
             }
         }
         if (UI[CONTOROL.ZOOM].display && UI[CONTOROL.ZOOM].image.color == showColor)
@@ -173,7 +180,6 @@ public class Tutorial : MonoBehaviour
             if (InputSelect())
             {
                 UpdateUIstatue(CONTOROL.SELECT, false);
-                displayTutorial(CONTOROL.CANCEL, "戻る / 投げる(はしたない)");
             }
         }
         if (UI[CONTOROL.CANCEL].display && UI[CONTOROL.CANCEL].image.color == showColor)
