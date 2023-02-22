@@ -8,6 +8,8 @@ TagManager:
   - PlaceArea
   - Destructible
   - Paint
+  - RandomPlace
+  - Holdable
   layers:
   - Default
   - TransparentFX
