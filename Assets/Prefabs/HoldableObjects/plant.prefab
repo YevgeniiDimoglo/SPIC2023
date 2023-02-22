@@ -120,9 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa8d56c2d1a9be4fa3b0aa9b4073a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textFont: {fileID: 0}
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
   holdingPosition: {x: 0, y: 0, z: 0}
-  holdingRotation: {x: 0, y: 0, z: 0, w: 1}
+  holdingRotation: {x: 0.64278764, y: 0, z: 0, w: -0.76604444}
 --- !u!54 &917335928704103835
 Rigidbody:
   m_ObjectHideFlags: 0
