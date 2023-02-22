@@ -12,21 +12,25 @@ public class HangingPaintScoring : Scoring
 
         int score = 0;
         float angle = Vector3.Angle(Vector3.up, transform.up);
-        if (angle < 5.0f)
+        if (angle < 3.0f)
         {
-            score = 100;
+            score = 250;
         }
-        else if (angle < 10.0f)
+        else if (angle < 5.0f)
         {
-            score = 50;
+            score = 150;
         }
         else if (angle < 15.0f)
         {
-            score = -20;
+            score = -50;
+        }
+        else if (angle < 20.0f)
+        {
+            score = -100;
         }
         else
         {
-            score = -50;
+            score = -200;
         }
 
         Totals.Add(new Scoring.ScoreTotal(scoreTitle, score));
