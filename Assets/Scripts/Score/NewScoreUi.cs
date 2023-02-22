@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 public class NewScoreUi : MonoBehaviour
 {
@@ -20,16 +19,10 @@ public class NewScoreUi : MonoBehaviour
 
         foreach (var item in scorePrefab.GetComponent<ScoreHolder>().tableRecords)
         {
-            Debug.Log(item.name + " " + item.score);
-        }
-
-        foreach (var item in scorePrefab.GetComponent<ScoreHolder>().tableRecords)
-        {
             scoreManager.AddScore(new NewScore(name: item.name, score: item.score));
         }
 
-
-        scoreManager.AddScore(new NewScore(name: "Total Score ", score: scorePrefab.GetComponent<ScoreHolder>().TotalScore));
+        scoreManager.AddScore(new NewScore(name: "çáåv ", score: scorePrefab.GetComponent<ScoreHolder>().TotalScore));
 
         var scores  = scoreManager.GetScores().ToArray();
         for (int i = 0; i < scores.Length; i++)
@@ -46,7 +39,20 @@ public class NewScoreUi : MonoBehaviour
         {
             GameObject child = gameObject.transform.GetChild(i).gameObject;
 
-            child.transform.Translate(Vector3.up * Time.deltaTime * 10, Space.Self);
+            if (child.transform.position.y >= 600 || child.transform.position.y <= 200)
+            {
+                child.GetComponent<CanvasGroup>().alpha = 0;
+            }
+            else
+            {
+                child.GetComponent<CanvasGroup>().alpha = 1;
+            }
+
+            if (gameObject.transform.GetChild(transform.childCount-1).transform.position.y <= 200)
+            {
+                child.transform.Translate(Vector3.up * Time.deltaTime * 80, Space.Self);
+            }
+            
         }
     }
 }
