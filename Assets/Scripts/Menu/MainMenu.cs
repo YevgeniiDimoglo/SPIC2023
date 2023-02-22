@@ -13,6 +13,11 @@ public class MainMenu : MonoBehaviour
         levelLoader.LoadNextLevel();
         Cursor.visible = false;
     }
+ 
+    public void CreditsGame()
+    {
+        levelLoader.LoadCreditsLevel();
+    }
     public void QuitGame()
     {
         Application.Quit();
