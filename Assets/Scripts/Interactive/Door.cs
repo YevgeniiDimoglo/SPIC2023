@@ -14,6 +14,9 @@ public class Door : InteractiveObject
     private bool open;
     private float angle = 0;
 
+    private GameObject popWin;
+    private static bool showTutorial = true;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -41,10 +44,43 @@ public class Door : InteractiveObject
             transform.RotateAround(transform.position + (transform.rotation * CenterPoint), transform.up, deltaAngle);
             angle += deltaAngle;
         }
+
+        if (popWin)
+        {
+            popWin.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 0.5f);
+        }
+    }
+
+    public override void hover()
+    {
+        if (showTutorial)
+        {
+            popWin = popText("ŠJ‚¯‚é", Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 0.5f), new Vector2(40, 50), 24);
+        }
+
+        base.hover();
+    }
+
+    public override void unhover()
+    {
+        if (popWin)
+        {
+            Destroy(popWin);
+            popWin = null;
+        }
+
+        base.hover();
     }
 
     public override void click()
     {
+        showTutorial = false;
+        if (popWin)
+        {
+            Destroy(popWin);
+            popWin = null;
+        }
+
         open = !open;
         if (doorAudio) audioSource.PlayOneShot(doorAudio);
     }

@@ -13,6 +13,8 @@ public class StorageBox : InteractiveObject
 
     private Vector3 focusPoint;
 
+    private GameObject Message;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -94,7 +96,20 @@ public class StorageBox : InteractiveObject
     {
         if (player.GetComponent<MaidController>().getHolding() == null && objects.Count == 0) return;
 
+        Destroy(Message);
+        string msg = "’²‚×‚é";
+        if (player.GetComponent<MaidController>().getHolding())
+            msg = "“ü‚ê‚é";
+
+        Message = popText(msg, Camera.main.WorldToScreenPoint(transform.position), new Vector2(100, 100), 24.0f);
+
         base.hover();
+    }
+
+    public override void unhover()
+    {
+        Destroy(Message);
+        base.unhover();
     }
 
     public override void click()
@@ -105,6 +120,7 @@ public class StorageBox : InteractiveObject
             // Store
             player.GetComponent<MaidController>().release();
             Store(obj);
+            Destroy(Message);
         }
         else if (objects.Count > 0)
         {
@@ -113,6 +129,7 @@ public class StorageBox : InteractiveObject
             storeMode = true;
             player.SetActive(false);
             Camera.main.GetComponent<FreeFollowCamera>().StopFollow();
+            Destroy(Message);
         }
     }
 
