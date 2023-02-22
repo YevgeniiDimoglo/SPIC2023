@@ -7,13 +7,24 @@ public class MaidController : MonoBehaviour
 {
     [SerializeField] private GameObject holdedObject;
     [SerializeField] private GameObject holdingPosition;
+    [SerializeField] private AudioClip atmosphereAudio;
+
     private Animator _animator;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     private void Start()
     {
         holdedObject = null;
         _animator = GetComponent<Animator>();
+        if (atmosphereAudio != null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = atmosphereAudio;
+            audioSource.loop = true;
+            audioSource.volume = 0.15f;
+            audioSource.Play();
+        }
     }
 
     // Update is called once per frame
