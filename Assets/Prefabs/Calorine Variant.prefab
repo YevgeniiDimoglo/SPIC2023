@@ -427,6 +427,8 @@ MonoBehaviour:
   holdedObject: {fileID: 0}
   holdingPosition: {fileID: 1421806561}
   atmosphereAudio: {fileID: 8300000, guid: 415d31b8ab31cd84cad523bade9f8191, type: 3}
+  pikcAudio: {fileID: 8300000, guid: f74d199889417444ca7e28ab36101d8f, type: 3}
+  placeItemAudio: {fileID: 8300000, guid: d7a67c7013df2f7468a551410ef0a2da, type: 3}
 --- !u!136 &623453621
 CapsuleCollider:
   m_ObjectHideFlags: 0

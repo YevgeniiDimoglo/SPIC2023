@@ -8,6 +8,9 @@ public class Door : InteractiveObject
     [SerializeField] private float openAngle = 90.0f;
     [SerializeField] private float roateSpeed = 100.0f;
 
+    [SerializeField] private AudioClip doorAudio;
+    private AudioSource audioSource;
+
     private bool open;
     private float angle = 0;
 
@@ -16,6 +19,12 @@ public class Door : InteractiveObject
     {
         gameObject.layer = LayerMask.NameToLayer("Holdable");
         open = false;
+
+        if (doorAudio != null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         base.Start();
     }
 
@@ -37,5 +46,6 @@ public class Door : InteractiveObject
     public override void click()
     {
         open = !open;
+        if (doorAudio) audioSource.PlayOneShot(doorAudio);
     }
 }
