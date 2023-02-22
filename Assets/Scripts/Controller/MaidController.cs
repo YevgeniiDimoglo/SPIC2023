@@ -45,6 +45,8 @@ public class MaidController : MonoBehaviour
                 holdedObject.transform.rotation = transform.rotation;
                 holdedObject.GetComponent<Rigidbody>().AddForce(transform.forward * 10.0f, ForceMode.Impulse);
 
+                ScoreHolder.Throwing += 1;
+
                 release();
             }
         }

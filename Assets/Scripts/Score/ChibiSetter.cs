@@ -15,17 +15,17 @@ public class ChibiSetter : MonoBehaviour
          GameObject scorePrefab = GameObject.FindGameObjectWithTag("ScoreTable");
 
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore == 0)
+        if (ScoreHolder.TotalScore <= 500)
         {
             transform.GetComponent<Image>().sprite = rankImages[0];
         }
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore >= 0 && scorePrefab.GetComponent<ScoreHolder>().TotalScore < 200)
+        if (ScoreHolder.TotalScore >= 500 && ScoreHolder.TotalScore < 1000)
         {
             transform.GetComponent<Image>().sprite = rankImages[1];
         }
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore >= 300)
+        if (ScoreHolder.TotalScore >= 1000)
         {
             transform.GetComponent<Image>().sprite = rankImages[2];
         }
