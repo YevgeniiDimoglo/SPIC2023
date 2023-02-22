@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RandomManager : MonoBehaviour
 {
+    private Vector3 off = new Vector3(0, 0, 0.4f);
     // Start is called before the first frame update
     void Start()
     {
@@ -9,7 +10,7 @@ public class RandomManager : MonoBehaviour
 
         foreach (var item in paintings)
         {
-            item.transform.RotateAround(transform.position, transform.forward, Random.Range(-15.0f, 15.0f));
+            item.transform.RotateAround(item.transform.position + off, item.transform.forward, Random.Range(-15.0f, 15.0f));
         }
 
         GameObject[] randomPlace = GameObject.FindGameObjectsWithTag("RandomPlace");
