@@ -39,4 +39,14 @@ public class NewScoreUi : MonoBehaviour
             row.score.text = scores[i].score.ToString();
         }
     }
+
+    private void Update()
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            GameObject child = gameObject.transform.GetChild(i).gameObject;
+
+            child.transform.Translate(Vector3.up * Time.deltaTime * 10, Space.Self);
+        }
+    }
 }
