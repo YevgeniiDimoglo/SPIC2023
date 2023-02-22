@@ -9,8 +9,15 @@ public class ScoreHolder : MonoBehaviour
     [SerializeField]
     private TimerController timer;
 
+    [SerializeField]
+    private MoveController moveController;
+
+    [SerializeField]
+    private StorageBox storageBox;
+
     private List<Scoring.ScoreTotal> scores;
     private List<GameObject> scoresBooks;
+    private List<GameObject> gameObjects;
     private GameObject[] placebaleAreas;
     private GameObject[,] objects;
 
@@ -31,10 +38,13 @@ public class ScoreHolder : MonoBehaviour
     public List<scoreTableRecord> tableRecords = new List<scoreTableRecord>();
 
     public static bool isRunning = false;
-    public static bool isThrowingObject = false;
+
     public static int dustCounter;
-    private int dustOverall;
-    public int TotalScore;
+    public static int dustOverall;
+
+    public static int Throwing = 0;
+
+    static public int TotalScore;
 
     // Start is called before the first frame update
     private void Awake()
@@ -45,7 +55,7 @@ public class ScoreHolder : MonoBehaviour
 
     private void Update()
     {
-        if (timer.elapsedTime <= 5 && !calculated)
+        if (timer.elapsedTime <= 3 && !calculated)
         {
             CalculateOverallScore();
         }
@@ -64,7 +74,7 @@ public class ScoreHolder : MonoBehaviour
 
         foreach (var item in scoresBooks)
         {
-            tableRecords.Add(new scoreTableRecord(item.GetComponent<BookObject>().Title(), 50));
+            tableRecords.Add(new scoreTableRecord(item.GetComponent<BookObject>().Title(), 30));
         }
 
         placebaleAreas = GameObject.FindGameObjectsWithTag("PlaceArea");
@@ -77,15 +87,29 @@ public class ScoreHolder : MonoBehaviour
             {
                 if (_object != null)
                 {
-                    tableRecords.Add(new scoreTableRecord(_object.name, 100));
+                    tableRecords.Add(new scoreTableRecord(_object.name, 50));
                 }
             }
         }
 
+        foreach (var _object in objects)
+        {
+            if (_object != null)
+            {
+                tableRecords.Add(new scoreTableRecord(_object.name, 50));
+            }
+        }
+
+        isRunning = moveController.NeverRun();
 
         foreach (var item in tableRecords)
         {
             TotalScore += item.score;
+
+            if (!isRunning)
+            {
+                TotalScore += 300;
+            }
         }
 
         calculated = true;

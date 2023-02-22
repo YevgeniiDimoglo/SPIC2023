@@ -22,7 +22,19 @@ public class NewScoreUi : MonoBehaviour
             scoreManager.AddScore(new NewScore(name: item.name, score: item.score));
         }
 
-        scoreManager.AddScore(new NewScore(name: "合計 ", score: scorePrefab.GetComponent<ScoreHolder>().TotalScore));
+        scoreManager.AddScore(new NewScore(name: "埃　", score: (ScoreHolder.dustOverall - ScoreHolder.dustCounter) * -50));
+
+        if (ScoreHolder.Throwing < 0)
+        {
+            scoreManager.AddScore(new NewScore(name: "物を投げるじゃない　", score: ScoreHolder.Throwing * -30));
+        }
+        
+        if (ScoreHolder.isRunning)
+        {
+            scoreManager.AddScore(new NewScore(name: "優雅なメイドは走らな　", score: 300));
+        }
+       
+        scoreManager.AddScore(new NewScore(name: "合計 ", score: ScoreHolder.TotalScore));
 
         var scores  = scoreManager.GetScores().ToArray();
         for (int i = 0; i < scores.Length; i++)

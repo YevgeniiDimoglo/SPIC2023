@@ -14,27 +14,27 @@ public class RankSetter : MonoBehaviour
     {
         GameObject scorePrefab = GameObject.FindGameObjectWithTag("ScoreTable");
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore == 0)
+        if (ScoreHolder.TotalScore < 0)
         {
             transform.GetComponent<Image>().sprite = rankImages[0];
         }
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore >= 0 && scorePrefab.GetComponent<ScoreHolder>().TotalScore < 100)
+        if (ScoreHolder.TotalScore >= 0 && ScoreHolder.TotalScore < 500)
         {
             transform.GetComponent<Image>().sprite = rankImages[1];
         }
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore >= 100 && scorePrefab.GetComponent<ScoreHolder>().TotalScore < 200)
+        if (ScoreHolder.TotalScore >= 500 && ScoreHolder.TotalScore < 1000)
         {
             transform.GetComponent<Image>().sprite = rankImages[2];
         }
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore >= 200 && scorePrefab.GetComponent<ScoreHolder>().TotalScore < 300)
+        if (ScoreHolder.TotalScore >= 1000 && ScoreHolder.TotalScore < 1500)
         {
             transform.GetComponent<Image>().sprite = rankImages[3];
         }
 
-        if (scorePrefab.GetComponent<ScoreHolder>().TotalScore >= 300)
+        if (ScoreHolder.TotalScore >= 1500)
         {
             transform.GetComponent<Image>().sprite = rankImages[4];
         }
