@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a7b6c5cfeaa003f49991f0072ba12138,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7b6c5cfeaa003f49991f0072ba12138,
         type: 3}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
-  focusOffset: {x: 0, y: 1.5, z: 0}
+  focusOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &1871431221
 BoxCollider:
   m_ObjectHideFlags: 0
