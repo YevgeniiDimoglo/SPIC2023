@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
+  holdingPosition: {x: 0, y: -0.1, z: 0.03}
+  holdingRotation: {x: 0.6087614, y: 0, z: 0, w: -0.7933533}
 --- !u!1 &9102538054164666275
 GameObject:
   m_ObjectHideFlags: 0

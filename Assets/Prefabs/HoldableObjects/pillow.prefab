@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
-  holdingPosition: {x: 0, y: 0, z: 0}
-  holdingRotation: {x: 0, y: 0, z: 0, w: 1}
+  holdingPosition: {x: -0.06, y: -0.08, z: 0.05}
+  holdingRotation: {x: 0.08715574, y: 0, z: 0, w: 0.9961947}
 --- !u!54 &1909817999242691834
 Rigidbody:
   m_ObjectHideFlags: 0
