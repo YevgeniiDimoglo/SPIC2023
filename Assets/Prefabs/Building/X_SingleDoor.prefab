@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc3ca6a1b804484fbc7d1c95dee0fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textFont: {fileID: 11400000, guid: 5be1aa299979923469cf68394d23b14d, type: 2}
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
   CenterPoint: {x: -0.4, y: 0, z: -0.02}
   openAngle: 90

@@ -1028,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ff10d1e109f154d996cf0ca05c0d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textFont: {fileID: 0}
   hoverMaterial: {fileID: 2100000, guid: 651bb1da1f69f514290274ebe2ab96cf, type: 2}
   BookPos: {x: 0, y: 0.63, z: -0.45}
   cameraDistance: 1
@@ -2131,7 +2132,7 @@ GameObject:
   - component: {fileID: 340741331}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4226,6 +4227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdedObject: {fileID: 0}
   holdingPosition: {fileID: 1421806561}
+  atmosphereAudio: {fileID: 0}
+  pikcAudio: {fileID: 0}
+  placeItemAudio: {fileID: 0}
 --- !u!114 &623453619
 MonoBehaviour:
   m_ObjectHideFlags: 0
