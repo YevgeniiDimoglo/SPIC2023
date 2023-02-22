@@ -7,6 +7,7 @@ TagManager:
   - ScoreTable
   - PlaceArea
   - Destructible
+  - Paint
   layers:
   - Default
   - TransparentFX

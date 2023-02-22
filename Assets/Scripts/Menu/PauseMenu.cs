@@ -18,10 +18,12 @@ public class PauseMenu : MonoBehaviour
             if (GameIsPaused)
             {
                 Resume();
+                Cursor.visible = false;
             }
             else
             {
                 Pause();
+                Cursor.visible = true;
             }
         }
     }

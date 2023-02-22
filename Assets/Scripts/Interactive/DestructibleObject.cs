@@ -24,8 +24,9 @@ public class DestructableObject : InteractiveObject
 
     public override void click()
     {
-        graffity.DestroySquare(transform.GetSiblingIndex());
-        Destroy(this.GetComponent<BoxCollider>());
+        //graffity.DestroySquare(transform.GetSiblingIndex());
         ScoreHolder.dustCounter -= 1;
+        Destroy(gameObject);
+        //Destroy(this.GetComponent<BoxCollider>());
     }
 }
