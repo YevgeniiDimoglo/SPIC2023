@@ -122,6 +122,7 @@ MonoBehaviour:
   CenterPoint: {x: -0.3, y: 0, z: -0.02}
   openAngle: 90
   roateSpeed: 180
+  doorAudio: {fileID: 8300000, guid: f1ab9071bc208394193e742dc119ca53, type: 3}
 --- !u!1 &2511665040195207006
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +246,7 @@ MonoBehaviour:
   CenterPoint: {x: 0.3, y: 0, z: -0.02}
   openAngle: -90
   roateSpeed: 180
+  doorAudio: {fileID: 8300000, guid: f1ab9071bc208394193e742dc119ca53, type: 3}
 --- !u!1 &4696910924568790597
 GameObject:
   m_ObjectHideFlags: 0

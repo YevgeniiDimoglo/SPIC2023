@@ -9,6 +9,9 @@ public class MaidController : MonoBehaviour
     [SerializeField] private GameObject holdingPosition;
     [SerializeField] private AudioClip atmosphereAudio;
 
+    [SerializeField] private AudioClip pikcAudio;
+    [SerializeField] private AudioClip placeItemAudio;
+
     private Animator _animator;
     private AudioSource audioSource;
 
@@ -97,6 +100,11 @@ public class MaidController : MonoBehaviour
         if (holdedObject != null) return;
         obj.GetComponent<Collider>().enabled = false;
         holdedObject = obj;
+
+        if (audioSource && pikcAudio)
+        {
+            audioSource.PlayOneShot(pikcAudio);
+        }
     }
 
     public void release()
@@ -104,6 +112,11 @@ public class MaidController : MonoBehaviour
         holdedObject.GetComponent<Collider>().enabled = true;
 
         holdedObject = null;
+
+        if (audioSource && placeItemAudio)
+        {
+            audioSource.PlayOneShot(placeItemAudio);
+        }
     }
 
     public GameObject getHolding()

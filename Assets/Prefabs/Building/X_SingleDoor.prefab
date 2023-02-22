@@ -123,6 +123,7 @@ MonoBehaviour:
   CenterPoint: {x: -0.4, y: 0, z: -0.02}
   openAngle: 90
   roateSpeed: 180
+  doorAudio: {fileID: 8300000, guid: f1ab9071bc208394193e742dc119ca53, type: 3}
 --- !u!1 &5062748624523751505
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ Transform:
   m_Children:
   - {fileID: 7943275842322833420}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &8589054696393050800
 GameObject:
